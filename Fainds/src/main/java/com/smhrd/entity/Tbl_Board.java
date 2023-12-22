@@ -37,6 +37,7 @@ public class Tbl_Board {
 	   
 	   @ManyToOne // 현재 테이블 기준
 	   @JoinColumn(referencedColumnName = "userId") // FK 지정(Tbl_user의 user_id 참조)
+	   
 	   private Tbl_User boardUser;
 	   
 	   
