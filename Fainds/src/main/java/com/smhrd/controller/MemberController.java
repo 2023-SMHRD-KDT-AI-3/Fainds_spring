@@ -5,8 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.smhrd.entity.Tbl_Member;
+import com.smhrd.entity.Tbl_User;
 import com.smhrd.mapper.MemberMapper;
 import com.smhrd.repository.MemberRepository;
 
@@ -20,34 +21,37 @@ public class MemberController {
 	@Autowired
 	private MemberRepository repo;
 	
-	@RequestMapping("/test")
-	public String test() {
-
-		// consol창에 현재 시간을 출력
-		// 1. mapper의 date메소드 불러와서 time에 저장
-		String time = mapper.date();
-		// 2. time 출력
-		System.out.println(time);
-
-		// 2)test.jsp로 이동하도록 만들자
-		return "test";
-	}
-	@RequestMapping("/main")
-	public String goMain() {
-
-		return "main";
-	}
-	@RequestMapping("/join")
-	public String join(Tbl_Member member) {
-		// 1. 데이터 수집
-		// 스프링이 넘어온 name값과 member 필드명과 같은 얘들 수집
-		
 	
-		// 2. 기능 실행
-		repo.save(member); 
+	//로그인 기능
+	@RequestMapping("/login")
+	@ResponseBody
+	public boolean login(Tbl_User user) {
+		boolean loginCheck = false;
+		System.out.println(user);
+		Tbl_User result =repo.findByUserIdAndUserPw(user.getUserId(),user.getUserPw());
 		
-		// 3. View 선택
-		return "test";
+		if(result != null) {
+			loginCheck=true;
+		}
+		System.out.println("loginCheck="+loginCheck);
+		
+		
+		return loginCheck;
 	}
+	
+	
+	@RequestMapping("/join")
+	public String join(Tbl_User user) {
+		System.out.println("user : " + user);
+		Tbl_User result =new Tbl_User();
+		
+		
+		repo.save(user);
+		
+		System.out.println("result="+result);
+		
+		return "성공";
+	}
+	
 	
 }

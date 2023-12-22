@@ -3,10 +3,14 @@ package com.smhrd.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.smhrd.entity.Tbl_Member;
+import com.smhrd.entity.Tbl_User;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Tbl_Member, String>{
+public interface MemberRepository extends JpaRepository<Tbl_User, String>{
+
+	Tbl_User findByUserIdAndUserPw(String userId, String userPw);
+
+	
 
 
 	
