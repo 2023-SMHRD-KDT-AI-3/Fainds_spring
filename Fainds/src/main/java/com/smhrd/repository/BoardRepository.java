@@ -6,15 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.smhrd.entity.Tbl_Board;
-import com.smhrd.entity.Tbl_User;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Tbl_User, String>{
+public interface BoardRepository extends JpaRepository<Tbl_Board, String>{
 
-	Tbl_User findByUserIdAndUserPw(String userId, String userPw);
-
+	public Tbl_Board findByBoardSeq(int Boardseq);
 	
-
-
 	
 }
