@@ -83,6 +83,15 @@ public class MemberController {
         }
         return res;
 	}
-	
-	
+	@RequestMapping("/chemail")
+	@ResponseBody
+	public String chemail(String currentEmail, String newEmail) {
+		
+		System.out.println(currentEmail);
+		System.out.println(newEmail);
+		
+		int result =repo.chemail(currentEmail, newEmail);
+		
+		return "성공";
+	}
 }
