@@ -83,11 +83,28 @@ public class MemberController {
         }
         return res;
 	}
-	
-	@RequestMapping("/savePw")
+
+	@RequestMapping("/chemail")
 	@ResponseBody
-	public String savePw(Tbl_User user) {
-		repo.saveByCurrentPwAndNewPw(currentPw,newPw);
+	public String chemail(String currentEmail, String newEmail) {
 		
+		System.out.println(currentEmail);
+		System.out.println(newEmail);
+		
+		int result =repo.chemail(currentEmail, newEmail);
+		
+		return "성공";
+	}
+	
+	@RequestMapping("/chepw")
+	@ResponseBody
+	public String chepw(String currentPw, String newPw) {
+		
+		System.out.println(currentPw);
+		System.out.println(newPw);
+		
+		int result =repo.chepw(currentPw, newPw);
+		
+		return "성공";
 	}
 }
