@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,6 +42,9 @@ public class Tbl_Cmt {
 	   
 	   @Column(updatable = false, insertable = false, columnDefinition = "datetime default now()")
 	   private Date createdAt;
+	   
+	   
+	   
 	   
 	   @Override
 	   public String toString() {

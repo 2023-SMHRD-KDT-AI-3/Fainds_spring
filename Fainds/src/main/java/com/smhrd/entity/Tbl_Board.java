@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,7 +29,7 @@ public class Tbl_Board {
 	   @Id
 	   @Column(insertable = false, updatable = false)
 	   @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto_Increment
-	   private long boardSeq;
+	   private int boardSeq;
 	   
 	   
 	   @Column(length = 100, nullable = false)
@@ -36,8 +41,8 @@ public class Tbl_Board {
 	   
 	   
 	   @ManyToOne // 현재 테이블 기준
-	   @JoinColumn(referencedColumnName = "userId") // FK 지정(Tbl_user의 user_id 참조)
-	   
+	   @JoinColumn(referencedColumnName = "userId") // FK 지정(Tbl_user의 user_id 참조)	   
+	   @JsonBackReference
 	   private Tbl_User boardUser;
 	   
 	   
@@ -47,6 +52,10 @@ public class Tbl_Board {
 	   @Column(updatable = false, insertable = false, columnDefinition = "datetime default now()")
 	   private Date createdAt;
 
+	   @Column(columnDefinition = "int default 0")
+	   private int boardCmtNum;
+	   
+	   
 	   // 회원(이메일) 1 <-----------> N 게시글(작성자)
 	   @OneToMany(mappedBy = "boardSeq") // 1대 다 관계, mappedBy에 연결할 컬럼 지정
 	   private List<Tbl_Cmt> cmt; // List<연결된 테이블의 자료형>
