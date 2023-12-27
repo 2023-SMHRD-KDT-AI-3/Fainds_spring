@@ -84,5 +84,10 @@ public class MemberController {
         return res;
 	}
 	
-	
+	@RequestMapping("/savePw")
+	@ResponseBody
+	public String savePw(Tbl_User user) {
+		repo.saveByCurrentPwAndNewPw(currentPw,newPw);
+		
+	}
 }

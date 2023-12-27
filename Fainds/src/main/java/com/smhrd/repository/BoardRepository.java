@@ -13,4 +13,5 @@ public interface BoardRepository extends JpaRepository<Tbl_Board, String>{
 	public Tbl_Board findByBoardSeq(int Boardseq);
 	
 	
+	
 }

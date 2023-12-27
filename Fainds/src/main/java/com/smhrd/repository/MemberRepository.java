@@ -12,9 +12,8 @@ import com.smhrd.entity.Tbl_User;
 public interface MemberRepository extends JpaRepository<Tbl_User, String>{
 
 	Tbl_User findByUserIdAndUserPw(String userId, String userPw);
-
-	
-
+	Tbl_User saveByCurrentPwAndNewPw(String currentPw, String newPw);
+	Tbl_User saveByCurrentEmailAndNewEmail(String currentEmail, String newEmail);
 
 	
 }
