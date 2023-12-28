@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Tbl_Cmt {
-	@Id
+		@Id
 	   @Column(insertable = false, updatable = false)
 	   @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto_Increment
 	   private long cmtSeq;
@@ -32,7 +33,8 @@ public class Tbl_Cmt {
 	   
 	   
 	   @ManyToOne // 현재 테이블 기준
-	   @JoinColumn(referencedColumnName = "boardSeq") // FK 지정(Tbl_board의 board_seq 참조)
+	   @JoinColumn(referencedColumnName = "boardSeq")
+	   // FK 지정(Tbl_board의 board_seq 참조)
 	   private Tbl_Board boardSeq;
 	   
 	   
@@ -43,11 +45,14 @@ public class Tbl_Cmt {
 	   @Column(updatable = false, insertable = false, columnDefinition = "datetime default now()")
 	   private Date createdAt;
 	   
-	   
+	   @Column(nullable = true) 
+	    private int boardSeqId;
 	   
 	   
 	   @Override
 	   public String toString() {
 	      return "Tbl_Cmt";
 	   }
+	   
+	   
 }
