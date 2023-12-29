@@ -1,6 +1,11 @@
 package com.smhrd.controller;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,22 +36,8 @@ public class MemberController {
 	
 	@Autowired
     private S3Uploader s3Uploader;
-	//로그인 기능
-	@RequestMapping("/login")
-	@ResponseBody
-	public boolean login(Tbl_User user) {
-		boolean loginCheck = false;
-		System.out.println(user);
-		Tbl_User result =repo.findByUserIdAndUserPw(user.getUserId(),user.getUserPw());
-		
-		if(result != null) {
-			loginCheck=true;
-		}
-		System.out.println("loginCheck="+loginCheck);
-		
-		
-		return loginCheck;
-	}
+	
+	
 	
 	
 	@RequestMapping("/join")
@@ -62,6 +53,22 @@ public class MemberController {
 		return "성공";
 	}
 	
+	//로그인 기능
+	@RequestMapping("/login")
+	@ResponseBody
+	public boolean login(Tbl_User user) {
+	      boolean loginCheck = false;
+	      System.out.println(user);
+	      Tbl_User result =repo.findByUserIdAndUserPw(user.getUserId(),user.getUserPw());
+	      
+	      if(result != null) {
+	         loginCheck=true;
+	      }
+	      System.out.println("loginCheck="+loginCheck);
+	      
+	      
+	      return loginCheck;
+	   }
 	@RequestMapping("/getimg")
 	@ResponseBody
 	public String getimg(@RequestParam("image") MultipartFile file) {
@@ -96,6 +103,17 @@ public class MemberController {
 		return "성공";
 	}
 	
+
+	@RequestMapping("/settingemail")
+	@ResponseBody
+	public String settingemail(String userId) {
+		
+		String useremail = repo.settingemail(userId);
+			System.out.println(useremail);
+		
+		return useremail;
+		}
+
 	@RequestMapping("/chepw")
 	@ResponseBody
 	public String chepw(String currentPw, String newPw) {
@@ -106,5 +124,6 @@ public class MemberController {
 		int result =repo.chepw(currentPw, newPw);
 		
 		return "성공";
+
 	}
 }
