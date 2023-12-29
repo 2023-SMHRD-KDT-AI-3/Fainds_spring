@@ -90,6 +90,7 @@ public class MemberController {
         }
         return res;
 	}
+
 	@RequestMapping("/chemail")
 	@ResponseBody
 	public String chemail(String currentEmail, String newEmail) {
@@ -102,6 +103,7 @@ public class MemberController {
 		return "성공";
 	}
 	
+
 	@RequestMapping("/settingemail")
 	@ResponseBody
 	public String settingemail(String userId) {
@@ -110,5 +112,18 @@ public class MemberController {
 			System.out.println(useremail);
 		
 		return useremail;
+		}
+
+	@RequestMapping("/chepw")
+	@ResponseBody
+	public String chepw(String currentPw, String newPw) {
+		
+		System.out.println(currentPw);
+		System.out.println(newPw);
+		
+		int result =repo.chepw(currentPw, newPw);
+		
+		return "성공";
+
 	}
 }

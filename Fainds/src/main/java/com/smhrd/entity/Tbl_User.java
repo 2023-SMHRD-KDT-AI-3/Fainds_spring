@@ -41,6 +41,10 @@ public class Tbl_User {
 	   
 	   @Column(length = 50, nullable = false)
 	   private String userEmail;
+	   
+
+	   
+	   
 
 	   // 회원(이메일) 1 <-----------> N 게시글(작성자)
 	   

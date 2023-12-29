@@ -17,9 +17,6 @@ import com.smhrd.entity.Tbl_User;
 @Repository
 public interface MemberRepository extends JpaRepository<Tbl_User, String>{
 
-	
-
-	
 
 	Tbl_User findByUserIdAndUserPw(String userId, String userPw);
 	
@@ -28,8 +25,15 @@ public interface MemberRepository extends JpaRepository<Tbl_User, String>{
 	@Query(value = "UPDATE tbl_user SET user_email = :newEmail WHERE user_email = :currentEmail", nativeQuery = true)
 	int chemail(@Param("currentEmail") String currentEmail, @Param("newEmail") String newEmail);
 	
+
 	@Query(value = "SELECT user_email from tbl_user where user_id = :userId", nativeQuery = true)
 	String settingemail(@Param("userId") String userId);
 	
+
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE tbl_user SET user_pw = :newPw WHERE user_Pw = :currentPw", nativeQuery = true)
+	int chepw(@Param("currentPw") String currentPw, @Param("newPw") String newPw);
+
 	
 }
