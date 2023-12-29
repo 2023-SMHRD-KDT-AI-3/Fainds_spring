@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,11 +31,13 @@ public class Tbl_Cmt {
 	
 	   @ManyToOne // 현재 테이블 기준
 	   @JoinColumn(referencedColumnName = "userId") // FK 지정(Tbl_user의 user_id 참조)  
+	   @JsonBackReference
 	   private Tbl_User cmtUser;
 	   
 	   
 	   @ManyToOne // 현재 테이블 기준
 	   @JoinColumn(referencedColumnName = "boardSeq")
+	   
 	   // FK 지정(Tbl_board의 board_seq 참조)
 	   private Tbl_Board boardSeq;
 	   
@@ -47,6 +51,9 @@ public class Tbl_Cmt {
 	   
 	   @Column(nullable = true) 
 	    private int boardSeqId;
+	   
+	   @Column(nullable = true)
+	   private String cmtWriterUser;
 	   
 	   
 	   @Override

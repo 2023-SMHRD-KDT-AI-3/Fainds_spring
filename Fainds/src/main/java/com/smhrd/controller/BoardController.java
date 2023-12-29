@@ -3,7 +3,9 @@ package com.smhrd.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,12 +36,21 @@ public class BoardController {
 	public List<Tbl_Board> board(Tbl_Board board) {
 		
 		
-		List<Tbl_Board> result =repo.findAll();
-		System.out.println("board :"+result);
+		List<Tbl_Board> result =repo.findAll(Sort.by(Sort.Direction.DESC,"boardSeq"));
+		System.out.println("여기에 뭐가 들었어 ? "+result);
 		
 		return result;
 	}
 	
+	@RequestMapping("/boardSearch")
+	@ResponseBody
+	public List<Tbl_Board> boardSearch(String keyword){
+		List<Tbl_Board> result =repo.keywordsearch(keyword);
+		System.out.println("boardSearch : " + keyword);
+		
+		return result;
+		
+	}
 	
 	
 	
