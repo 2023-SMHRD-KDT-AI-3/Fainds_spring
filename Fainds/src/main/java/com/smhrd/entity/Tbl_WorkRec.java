@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,20 +27,21 @@ public class Tbl_WorkRec {
 	   private int workSeq;
 	   
 	   
-	   private Date startedAt;
+	   private String startedAt;
 	   
 	   
-	   private Date endedAt;
+	   private String endedAt;
 	   
 	   
 	   @ManyToOne // 현재 테이블 기준
 	   @JoinColumn(referencedColumnName = "userId") // FK 지정(Tbl_user의 user_id 참조)
+	   @JsonBackReference
 	   private Tbl_User workUser;
 	   
 	   
-	   @Column(insertable = false, nullable = false, columnDefinition = "int default 0")
+	   @Column(columnDefinition = "int default 0")
 	   private int workPay;
 	   
 	   
-	   private Date workDay;
+	   private String workDay;
 }
