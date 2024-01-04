@@ -42,6 +42,8 @@ public class BoardController {
 		return result;
 	}
 	
+	
+	
 	@RequestMapping("/boardSearch")
 	@ResponseBody
 	public List<Tbl_Board> boardSearch(String keyword){
