@@ -41,16 +41,20 @@ public class MemberController {
 	
 	
 	@RequestMapping("/join")
-	public String join(Tbl_User user) {
-		System.out.println("user : " + user);
-		Tbl_User result =new Tbl_User();
+	@ResponseBody
+	public String join(String userId,String userPw,String userEmail,String userName) {
 		
 		
-		repo.save(user);
 		
-		System.out.println("result="+result);
+//		String userId = user.getUserId();
+//		String userPw = user.getUserPw();
+//		String userEmail = user.getUserEmail();
+//		String userName = user.getUserName();
 		
-		return "성공";
+		repo.join(userId,userPw,userEmail,userName);
+		
+		return "회원가입 성공";
+		
 	}
 	
 	//로그인 기능

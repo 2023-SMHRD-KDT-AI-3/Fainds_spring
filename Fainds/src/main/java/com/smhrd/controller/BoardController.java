@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.smhrd.dto.BoardDTO;
 import com.smhrd.entity.Tbl_Board;
 import com.smhrd.repository.BoardRepository;
 
@@ -51,6 +52,8 @@ public class BoardController {
 		
 		return result;
 	}
+	
+	
 	
 	@RequestMapping("/boardSearch")
 	@ResponseBody
