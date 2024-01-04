@@ -31,6 +31,16 @@ public class BoardController {
 		return null;
 	}
 	
+	// 게시판 수정 기능
+	@RequestMapping("/boardedit")
+	@ResponseBody
+	public void boardEdit(String title, String content, String boardSeq) {
+		
+		repo.boardedit(title, content, boardSeq);
+		System.out.println("boardSeq : " + boardSeq);
+	
+	}
+	
 	@RequestMapping("/board")
 	@ResponseBody
 	public List<Tbl_Board> board(Tbl_Board board) {
