@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Tbl_WorkRec {
 	
-	   @Id
+		@Id
 	   @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto_Increment
 	   private int workSeq;
 	   
@@ -36,6 +37,7 @@ public class Tbl_WorkRec {
 	   @ManyToOne // 현재 테이블 기준
 	   @JoinColumn(referencedColumnName = "userId") // FK 지정(Tbl_user의 user_id 참조)
 	   @JsonBackReference
+	  
 	   private Tbl_User workUser;
 	   
 	   

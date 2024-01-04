@@ -55,6 +55,8 @@ public class Tbl_Board {
 	   @Column(columnDefinition = "int default 0")
 	   private int boardCmtNum;
 	   
+	   @Column
+	   private String boardWriter;
 	   
 	   // 회원(이메일) 1 <-----------> N 게시글(작성자)
 	   @OneToMany(mappedBy = "boardSeq") // 1대 다 관계, mappedBy에 연결할 컬럼 지정
