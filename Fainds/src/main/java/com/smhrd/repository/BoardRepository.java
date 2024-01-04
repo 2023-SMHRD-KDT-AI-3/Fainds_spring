@@ -24,7 +24,12 @@ public interface BoardRepository extends JpaRepository<Tbl_Board, String>{
 	@Query(value = "UPDATE tbl_board SET board_cmt_num = :result WHERE board_seq = :result2", nativeQuery = true)
 	int cmtupdate(@Param("result") int result, @Param("result2") int result2);
 
-
+	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE tbl_board SET board_title= :boardTitle, board_content= :boardContent WHERE board_seq= :boardSeq", nativeQuery = true)
+	void boardEdit(@Param("boardTitle") String boardTitle, @Param("boardContent") String boardContent, @Param("boardSeq") String boardSeq);
+	 
 	@Query(value = "SELECT * from tbl_board where board_title LIKE %:keyword%", nativeQuery = true)
 	List<Tbl_Board> keywordsearch(@Param("keyword") String keyword);
 
