@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.smhrd.dto.BoardDTO;
+//import com.smhrd.dto.BoardDTO;
 import com.smhrd.entity.Tbl_Board;
 import com.smhrd.repository.BoardRepository;
 
@@ -35,9 +35,9 @@ public class BoardController {
 	// 게시판 수정 기능
 	@RequestMapping("/boardedit")
 	@ResponseBody
-	public void boardEdit(String title, String content, String boardSeq) {
+	public void boardEdit(String boardTitle, String boardContent, String boardSeq) {
 		
-		repo.boardedit(title, content, boardSeq);
+		repo.boardEdit(boardTitle, boardContent, boardSeq);
 		System.out.println("boardSeq : " + boardSeq);
 	
 	}
