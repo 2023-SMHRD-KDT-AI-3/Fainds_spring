@@ -64,6 +64,13 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping("/boardDelete")
+	@ResponseBody
+	public void boardDelete(String boardSeqId) {
+		
+		repo.boardDelete(boardSeqId);
+		
+	}
 	
 	
 }

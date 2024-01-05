@@ -3,6 +3,7 @@ package com.smhrd.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,21 +27,28 @@ public class Tbl_User {
 	   @Column(length = 30)
 	   private String userId;
 	   
-	   
-	   @Column(length = 30, nullable = false)
-	   private String userPw;
-	   
-	   
-	   @Column(length = 40, nullable = false)
-	   private String userName;
-	   
-	   
 	   @Column(updatable = false, insertable = false, columnDefinition = "datetime default now()")
 	   private Date joinedAt;
 	   
 	   
 	   @Column(length = 50, nullable = false)
 	   private String userEmail;
+	   
+	   
+	   @Column(length = 40, nullable = false)
+	   private String userName;
+	   
+	   
+	   @Column(length = 30, nullable = false)
+	   private String userPw;
+	   
+	   
+	 
+	   
+	  
+	   
+	   
+	  
 	   
 
 	   

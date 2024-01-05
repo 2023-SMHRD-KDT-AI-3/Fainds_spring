@@ -33,5 +33,11 @@ public interface BoardRepository extends JpaRepository<Tbl_Board, String>{
 	@Query(value = "SELECT * from tbl_board where board_title LIKE %:keyword%", nativeQuery = true)
 	List<Tbl_Board> keywordsearch(@Param("keyword") String keyword);
 
+
+	@Transactional
+	@Modifying
+	@Query(value = "delete from tbl_board where board_seq = :boardSeqId", nativeQuery = true)
+	void boardDelete(@Param("boardSeqId") String boardSeqId);
+
 	
 }

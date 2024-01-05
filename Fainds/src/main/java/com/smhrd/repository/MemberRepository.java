@@ -38,7 +38,13 @@ public interface MemberRepository extends JpaRepository<Tbl_User, String>{
 	//여기 insert
 	@Transactional
 	@Modifying
-	@Query(value = "insert into tbl_user(user_id,user_email,user_name,user_pw) values (:userId,:userEmail,:userName,:userPw)", nativeQuery = true)
+	@Query(value = "insert into tbl_user(user_id,user_pw,user_email,user_name) values (:userId,:userPw,:userEmail,:userName)", nativeQuery = true)
 	int join(@Param("userId") String userId,@Param("userEmail") String userEmail,@Param("userName") String userName,@Param("userPw") String userPw);
+
+	
+	@Query(value = "select user_pw from tbl_user where user_id=:searchPwId and user_email=:searchPwEmail", nativeQuery = true)
+	String searchPw(@Param("searchPwId") String searchPwId,@Param("searchPwEmail") String searchPwEmail);
+
+
 	
 }

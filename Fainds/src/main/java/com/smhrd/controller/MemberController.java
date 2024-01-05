@@ -44,14 +44,12 @@ public class MemberController {
 	@ResponseBody
 	public String join(String userId,String userPw,String userEmail,String userName) {
 		
+		System.out.println("join :"+userId);
+		System.out.println("join :"+userPw);
+		System.out.println("join :"+userEmail);
+		System.out.println("join :"+userName);
 		
-		
-//		String userId = user.getUserId();
-//		String userPw = user.getUserPw();
-//		String userEmail = user.getUserEmail();
-//		String userName = user.getUserName();
-		
-		repo.join(userId,userPw,userEmail,userName);
+		repo.join(userId,userEmail,userName,userPw);
 		
 		return "회원가입 성공";
 		
@@ -94,7 +92,8 @@ public class MemberController {
         }
         return res;
 	}
-
+	
+	//이메일 수정
 	@RequestMapping("/chemail")
 	@ResponseBody
 	public String chemail(String currentEmail, String newEmail) {
@@ -107,7 +106,7 @@ public class MemberController {
 		return "성공";
 	}
 	
-
+	//
 	@RequestMapping("/settingemail")
 	@ResponseBody
 	public String settingemail(String userId) {
@@ -117,7 +116,8 @@ public class MemberController {
 		
 		return useremail;
 		}
-
+	
+	// 비밀번호 수정
 	@RequestMapping("/chepw")
 	@ResponseBody
 	public String chepw(String currentPw, String newPw) {
@@ -130,4 +130,15 @@ public class MemberController {
 		return "성공";
 
 	}
+	
+	@RequestMapping("/searchPw")
+	@ResponseBody
+	public String searchPw(String SearchPwId, String SearchPwEmail) {
+		
+		String result=repo.searchPw(SearchPwId,SearchPwEmail);
+		System.out.println("result는 :"+result);
+		return result;
+	}
+	
+	
 }
