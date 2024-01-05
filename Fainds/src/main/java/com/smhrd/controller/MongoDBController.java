@@ -51,4 +51,10 @@ public class MongoDBController {
     	return list;
     }
     
+    @RequestMapping(value = "/deleteid")
+    public String deletedata(@RequestParam String userid) {
+    	mongoDBService.deleteUser(userid);
+    	return ("delete success!");
+    }
+    
 }

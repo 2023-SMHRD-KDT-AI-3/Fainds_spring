@@ -56,4 +56,8 @@ public class MongoDBService {
         
         mongoDBRepository.save(mongoDBTestModel);
     }
+
+	public void deleteUser(String string) {
+		mongoDBRepository.deleteById(string);
+	}
 }
